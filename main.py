@@ -23,7 +23,7 @@ settings.max_dist = ( (settings.size[0])**2 + (settings.size[1])**2 )**0.5
 
 while True:
 
-	surf.fill((250, 250, 250))
+	surf.fill((0, 0, 0))
 
 	if (settings.mouse_start_pos):
 		pg.draw.line(surf, (255, 0, 0), settings.mouse_start_pos, settings.mouse_pos)
@@ -33,10 +33,11 @@ while True:
 
 	for obj in settings.astros:
 		for obj2 in settings.astros:
-			obj.calcuate_force(obj2.m, obj2.pos)
+			obj.calcuate_force(obj2.m, obj2.pos, obj2.rad)
 
 		for st_obj in settings.stars:
-			if(not obj.calcuate_force(st_obj.m, st_obj.pos)):
+			if(not obj.calcuate_force(st_obj.m, st_obj.pos, st_obj.rad)):
+				st_obj.m += obj.m
 				settings.astros.remove(obj)
 				break
 
@@ -46,7 +47,11 @@ while True:
 
 	for obj in settings.stars:
 		for obj2 in settings.stars:
-			obj.calcuate_force(obj2.m, obj2.pos)
+			if (not obj.calcuate_force(obj2.m, obj2.pos, obj2.rad)):
+				if (obj.m >= obj2.m and obj != obj2):
+					obj.m += obj2.m
+					settings.stars.remove(obj2)
+					break
 
 		obj.update()
 		obj.draw()
@@ -82,8 +87,10 @@ while True:
 					sp = ( r / settings.max_dist + 0.5)**2
 					x_sp = settings.astro_max_speed * sp * ( (x0-x1) / (abs(x0-x1) + abs(y0-y1)) )
 					y_sp = settings.astro_max_speed * sp * ( (y0-y1) / (abs(x0-x1) + abs(y0-y1)) )
+				else:
+					x_sp = y_sp = 0
 
-					settings.astros.append(Astro([x0, y0], [x_sp, y_sp], settings))
+				settings.astros.append(Astro([x0, y0], [x_sp, y_sp], settings))
 
 				settings.mouse_start_pos = False
 
