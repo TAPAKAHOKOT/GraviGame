@@ -1,6 +1,7 @@
+from random import randint as rnd
 import pygame as pg
 import os
-
+ 
 from settings import Settings
 from astro import Astro
 from star import Star
@@ -21,6 +22,10 @@ settings = Settings(surf, (size_x, size_y))
 settings.screen = screen
 settings.max_dist = ( (settings.size[0])**2 + (settings.size[1])**2 )**0.5
 
+for k in range(2000):
+	settings.astros.append(Astro([rnd(0, 800), rnd(0, 400)], [0, 0], settings))
+
+
 while True:
 
 	surf.fill((0, 0, 0))
@@ -32,8 +37,8 @@ while True:
 
 
 	for obj in settings.astros:
-		for obj2 in settings.astros:
-			obj.calcuate_force(obj2.m, obj2.pos, obj2.rad)
+		# for obj2 in settings.astros:
+		# 	obj.calcuate_force(obj2.m, obj2.pos, obj2.rad)
 
 		for st_obj in settings.stars:
 			if(not obj.calcuate_force(st_obj.m, st_obj.pos, st_obj.rad)):

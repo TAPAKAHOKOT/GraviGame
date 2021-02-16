@@ -29,3 +29,5 @@ class Astro(Space_obj):
 
 		self.pos[0] += self.speed[0]
 		self.pos[1] += self.speed[1]
+
+

@@ -16,7 +16,7 @@ class Settings:
 		self.max_stars_m = 2000
 		self.min_stars_m = 200
 
-		self.max_speed = 20
+		self.max_speed = 30
 
 		self.astros = []
 		self.stars = []

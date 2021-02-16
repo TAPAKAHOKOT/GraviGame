@@ -36,14 +36,14 @@ class Space_obj:
 		self.speed[0] -= (self.pos[0] - pos[0]) * force
 		self.speed[1] -= (self.pos[1] - pos[1]) * force
 
-		# if abs(self.speed[0]) >= self.settings.max_speed:
-		# 	k = self.settings.max_speed / abs(self.speed[0])
-		# 	self.speed[1] *= k
-		# 	self.speed[0] *= k
+		if abs(self.speed[0]) >= self.settings.max_speed:
+			k = self.settings.max_speed / abs(self.speed[0])
+			self.speed[1] *= k
+			self.speed[0] *= k
 
-		# if abs(self.speed[1]) >= self.settings.max_speed:
-		# 	k = self.settings.max_speed / abs(self.speed[1])
-		# 	self.speed[0] *= k
-		# 	self.speed[1] *= k
+		if abs(self.speed[1]) >= self.settings.max_speed:
+			k = self.settings.max_speed / abs(self.speed[1])
+			self.speed[0] *= k
+			self.speed[1] *= k
 
 		return True
