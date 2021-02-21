@@ -22,8 +22,8 @@ settings = Settings(surf, (size_x, size_y))
 settings.screen = screen
 settings.max_dist = ( (settings.size[0])**2 + (settings.size[1])**2 )**0.5
 
-for k in range(2000):
-	settings.astros.append(Astro([rnd(0, 800), rnd(0, 400)], [0, 0], settings))
+#for k in range(2000):
+#	settings.astros.append(Astro([rnd(0, 800), rnd(0, 400)], [0, 0], settings))
 
 
 while True:
